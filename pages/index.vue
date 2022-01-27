@@ -1,13 +1,13 @@
 <template>
-  <div>
-    <Navbar />
-  </div>
+	<div>
+		<Navbar />
+	</div>
 </template>
 
 <script setup lang="ts"></script>
 
 <style>
 html {
-  background-color: #2c2f33;
+	background-color: #2c2f33;
 }
 </style>
