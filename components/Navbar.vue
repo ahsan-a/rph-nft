@@ -1,5 +1,9 @@
 <script setup lang="ts">
-import { discordLogin } from '~/composables/discord';
+import { discordLogin, getUser } from '~/composables/discord';
+import { useMainStore } from '~/store/main';
+const mainStore = useMainStore();
+
+console.log(await getUser());
 </script>
 
 <template>
