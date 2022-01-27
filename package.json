@@ -8,5 +8,9 @@
   "devDependencies": {
     "nuxt-windicss": "^2.2.2",
     "nuxt3": "latest"
+  },
+  "dependencies": {
+    "discord-oauth2": "^2.9.0",
+    "form-data": "^4.0.0"
   }
 }

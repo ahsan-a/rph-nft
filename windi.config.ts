@@ -4,7 +4,7 @@ export default defineConfig({
   theme: {
     extend: {
       colors: {
-        blurple: "#5663F7",
+        blurple: "#7289da",
         rphbg: "#242934",
         rphfg: "#7383be",
       },
