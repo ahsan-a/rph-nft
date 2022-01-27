@@ -1,3 +1,7 @@
+<script setup lang="ts">
+import { discordLogin } from "~/composables/DiscordLogin";
+</script>
+
 <template>
   <div class="bg-blurple flex flex-row justify-between py-1">
     <NuxtLink
@@ -10,11 +14,10 @@
     <div class="flex flex-row items-center mr-3">
       <button
         class="text-white font-bold text-lg hover:bg-white hover:bg-opacity-20 px-3 py-2 rounded-lg transition-colors"
+        @click="discordLogin"
       >
         Sign In
       </button>
     </div>
   </div>
 </template>
-
-<script setup lang="ts"></script>
