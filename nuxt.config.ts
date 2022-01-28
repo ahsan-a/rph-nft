@@ -5,11 +5,12 @@ export default defineNuxtConfig({
 	typescript: {
 		shim: false,
 	},
-	buildModules: ['nuxt-windicss', '@pinia/nuxt'],
+	buildModules: ['nuxt-windicss', '@pinia/nuxt', '@vueuse/nuxt'],
 	publicRuntimeConfig: {
 		DISCORD_CLIENT_ID: process.env.DISCORD_CLIENT_ID,
 	},
 	privateRuntimeConfig: {
 		DISCORD_CLIENT_SECRET: process.env.DISCORD_CLIENT_SECRET,
+		FIREBASE: process.env.FIREBASE,
 	},
 });
