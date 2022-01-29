@@ -19,7 +19,6 @@ export default async (req: IncomingMessage, res: ServerResponse) => {
 			code: code.toString(),
 		}),
 	});
-	console.log('hi: ', response);
 
 	if (!response.error) {
 		setCookie(res, 'discord_token', response.access_token, {

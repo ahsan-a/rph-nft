@@ -1,5 +1,4 @@
 import { User } from 'typings';
-import { useDb } from '~/firebase';
 
 export const useDiscordLogin = () => {
 	const { DISCORD_CLIENT_ID } = useRuntimeConfig();
@@ -20,14 +19,7 @@ export const getUser = async (): Promise<User | null> => {
 
 	if (discordUser.error) return null;
 
-	const dUser: User = {
-		id: discordUser.id,
-		username: discordUser.username,
-		discriminator: discordUser.discriminator,
-		avatar: `https://cdn.discordapp.com/avatars/${discordUser.id}/${discordUser.avatar}.webp`,
-	};
+	const dUser: User = await $fetch('/api/user/getUser', { method: 'POST', params: { token: token.value } });
 
-	const db = useDb();
-	db.collection('users').doc(dUser.id).set(dUser);
 	return dUser;
 };

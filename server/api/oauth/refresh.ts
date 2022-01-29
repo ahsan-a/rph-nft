@@ -18,8 +18,6 @@ export default async (req: IncomingMessage, res: ServerResponse) => {
 		}),
 	});
 
-	console.log('refresh:', response);
-
 	if (!response.error) {
 		console.log('no error');
 

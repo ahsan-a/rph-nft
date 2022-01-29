@@ -12,7 +12,8 @@
 		"nuxt3": "latest"
 	},
 	"dependencies": {
-		"firebase-admin": "^10.0.2",
+		"@supabase/supabase-js": "^1.29.4",
+		"@vueuse/components": "^7.5.5",
 		"pinia": "^2.0.10"
 	}
 }

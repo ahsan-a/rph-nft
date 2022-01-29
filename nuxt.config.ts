@@ -11,6 +11,7 @@ export default defineNuxtConfig({
 	},
 	privateRuntimeConfig: {
 		DISCORD_CLIENT_SECRET: process.env.DISCORD_CLIENT_SECRET,
-		FIREBASE: process.env.FIREBASE,
+		SUPABASE_URL: process.env.SUPABASE_URL,
+		SUPABASE_KEY: process.env.SUPABASE_KEY,
 	},
 });
