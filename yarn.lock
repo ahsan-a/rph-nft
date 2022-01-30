@@ -961,15 +961,6 @@
   resolved "https://registry.yarnpkg.com/@vue/shared/-/shared-3.2.29.tgz#07dac7051117236431d2f737d16932aa38bbb925"
   integrity sha512-BjNpU8OK6Z0LVzGUppEk0CMYm/hKDnZfYdjSmPOs0N+TR1cLKJAkDwW8ASZUvaaSLEi6d3hVM7jnWnX+6yWnHw==
 
-"@vueuse/components@^7.5.5":
-  version "7.5.5"
-  resolved "https://registry.yarnpkg.com/@vueuse/components/-/components-7.5.5.tgz#7ab4fa416a851be5c962b836e10e4c0048321cf9"
-  integrity sha512-OrFjdIQK269HEZEgrOGpWJKUT6WqcdTNtSyrj/lioiah7wqFTDNgv21qUUcEAbV+CdA7aSvjetHnB7uxWnphJA==
-  dependencies:
-    "@vueuse/core" "7.5.5"
-    "@vueuse/shared" "7.5.5"
-    vue-demi "*"
-
 "@vueuse/core@7.5.5":
   version "7.5.5"
   resolved "https://registry.yarnpkg.com/@vueuse/core/-/core-7.5.5.tgz#c2f2a8783de0884acfb0be25e71ec3c6d1f9c42e"
@@ -5342,9 +5333,9 @@ unctx@^1.0.2:
   integrity sha512-qxRfnQZWJqkg180JeOCJEvtjj5/7wnWVqkNHln8muY5/z8kMWBFqikFBPwIPCQrZJ+jtaSWkVHJkuHUAXls6zw==
 
 undici@^4.9.5:
-  version "4.12.2"
-  resolved "https://registry.yarnpkg.com/undici/-/undici-4.12.2.tgz#f2fc50ca77a774ed8c0e7067c9361ee18a2f422b"
-  integrity sha512-RZj6SbkQFs5O/pJCboGEo6l5DTCe3Zg4r/8Z/0/2qnIv08+s6zL4akohOPMYWKc3mzwv15WTvsfMWaafZcvYoQ==
+  version "4.13.0"
+  resolved "https://registry.yarnpkg.com/undici/-/undici-4.13.0.tgz#7d10fe150c3241a6b3b0eba80eff59c9fb40f359"
+  integrity sha512-8lk8S/f2V0VUNGf2scU2b+KI2JSzEQLdCyRNRF3XmHu+5jectlSDaPSBCXAHFaUlt1rzngzOBVDgJS9/Gue/KA==
 
 unenv@^0.4.3:
   version "0.4.3"

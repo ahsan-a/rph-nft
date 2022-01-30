@@ -5,7 +5,7 @@ import { Nft, HomeNfts } from 'typings';
 
 export default async (req: IncomingMessage, res: ServerResponse) => {
 	try {
-		const dbNfts = await supabase.from('nfts').select().order('created_at', { ascending: false });
+		const dbNfts = await supabase.from('nfts').select().order('id', { ascending: false });
 
 		if (dbNfts.status !== 200) {
 			res.writeHead(500);
@@ -22,7 +22,6 @@ export default async (req: IncomingMessage, res: ServerResponse) => {
 
 		return returnNfts;
 	} catch (e) {
-		console.log(e);
 		res.writeHead(500);
 		res.write({ error: 'An unknown error occurred' });
 		return res.end();

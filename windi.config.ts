@@ -5,6 +5,7 @@ export default defineConfig({
 		extend: {
 			colors: {
 				blurple: '#7289da',
+				newBlurple: '#5865F2',
 				rphbg: '#23272A',
 				lightbg: '#2C2F33',
 				lighterbg: '#383c41',
