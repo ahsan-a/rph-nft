@@ -9,6 +9,7 @@ export default defineNuxtConfig({
 	publicRuntimeConfig: {
 		DISCORD_CLIENT_ID: process.env.DISCORD_CLIENT_ID,
 		SUPABASE_URL: process.env.SUPABASE_URL,
+		RPH_ID: process.env.RPH_ID,
 	},
 	privateRuntimeConfig: {
 		DISCORD_CLIENT_SECRET: process.env.DISCORD_CLIENT_SECRET,

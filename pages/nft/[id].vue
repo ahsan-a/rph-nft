@@ -9,11 +9,7 @@ const date = new Date(nft.created_at);
 const timeAgo = useTimeAgo(date);
 const token = useCookie('discord_token').value;
 
-if (token) {
-	const eligible: boolean = await $fetch('/api/nft/canBuy', { params: { id: nft.id, token } });
-	console.log(eligible);
-}
-// const eligible: boolean = token ? await $fetch('/api/nft/canBuy', { params: { id: nft.id, token } }) : false;
+const eligible: boolean = token ? ((await $fetch('/api/nft/canTrade', { params: { id: nft.id, token } })) as any).canTrade : false;
 </script>
 
 <template>
@@ -42,6 +38,7 @@ if (token) {
 								<h2 class="mt-8 text-gray-200">{{ nft.description }}</h2>
 								<button
 									class="w-full bg-blurple mt-8 rounded-md py-2 text-lg text-white font-bold hover:bg-newBlurple transition-colors disabled:bg-newBlurple"
+									:disabled="!eligible"
 									>Purchase</button
 								>
 							</div>

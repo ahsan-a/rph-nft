@@ -2054,6 +2054,11 @@ dir-glob@^3.0.1:
   dependencies:
     path-type "^4.0.0"
 
+discord-api-types@^0.26.1:
+  version "0.26.1"
+  resolved "https://registry.yarnpkg.com/discord-api-types/-/discord-api-types-0.26.1.tgz#726f766ddc37d60da95740991d22cb6ef2ed787b"
+  integrity sha512-T5PdMQ+Y1MEECYMV5wmyi9VEYPagEDEi4S0amgsszpWY0VB9JJ/hEvM6BgLhbdnKky4gfmZEXtEEtojN8ZKJQQ==
+
 dom-serializer@^1.0.1, dom-serializer@^1.3.2:
   version "1.3.2"
   resolved "https://registry.yarnpkg.com/dom-serializer/-/dom-serializer-1.3.2.tgz#6206437d32ceefaec7161803230c7a20bc1b4d91"
@@ -3959,7 +3964,7 @@ nuxt-windicss@^2.2.2:
     windicss-analysis "^0.3.5"
     windicss-webpack-plugin "^1.6.2"
 
-nuxt3@latest:
+nuxt3@^3.0.0-27389502.88da719:
   version "3.0.0-27389502.88da719"
   resolved "https://registry.yarnpkg.com/nuxt3/-/nuxt3-3.0.0-27389502.88da719.tgz#c52307213c90c78e41b81fd47195e30edbe27956"
   integrity sha512-3ir1ZCr2YcABfb+9c0y/edxt0HKxmL7YvEuX8lB5qPVizmgIi1RAXWkMHg9/gynyJHZbKaZOtgdaPuE/VWzWFg==

@@ -1,4 +1,5 @@
 import { User } from 'typings';
+import { APIUser } from 'discord-api-types/v9';
 
 export const useDiscordLogin = () => {
 	const { DISCORD_CLIENT_ID } = useRuntimeConfig();
@@ -10,16 +11,5 @@ export const useDiscordLogin = () => {
 export const getUser = async (): Promise<User | null> => {
 	const token = useCookie('discord_token');
 	if (!token.value) return null;
-
-	const discordUser: any = await $fetch('https://discord.com/api/users/@me', {
-		headers: {
-			Authorization: `Bearer ${token.value}`,
-		},
-	}).catch(console.log);
-
-	if (discordUser.error) return null;
-
-	const dUser: User = await $fetch('/api/user/getUser', { method: 'POST', params: { token: token.value } });
-
-	return dUser;
+	return (await $fetch('/api/user/getUser', { method: 'POST', params: { token: token.value } })) as User;
 };
