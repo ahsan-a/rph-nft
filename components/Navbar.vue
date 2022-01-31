@@ -1,15 +1,21 @@
 <script setup lang="ts">
-import { getUser, discordLogin } from '~/composables/discord';
+import { getUser, discordLogin, discordLogout } from '~/composables/discord';
 import { ref } from 'vue';
 
 const user = await getUser();
 const pfpEnabled = ref(false);
 const menuHover = ref(false);
+
+function blurPfp() {
+	setTimeout(() => {
+		pfpEnabled.value = false;
+	}, 500);
+}
 </script>
 
 <template>
 	<div class="w-40 mt-16 py-1 px-0.5 bg-lightbg outline-midbg absolute rounded-md right-1" v-if="pfpEnabled">
-		<button class="text-white px-2 text-sm py-1 hover:bg-lighterbg transition-all" @click="">Logout</button>
+		<button class="text-white px-2 text-sm py-1 hover:bg-lighterbg transition-all w-full" @click="discordLogout">Logout</button>
 	</div>
 	<div class="w-full">
 		<div class="bg-blurple flex flex-row justify-between py-1">
@@ -25,7 +31,7 @@ const menuHover = ref(false);
 					<h1 class="font-semibold text-white mr-3">{{ user.balance }} shitcoin</h1>
 					<button
 						@click="pfpEnabled = !pfpEnabled"
-						@blur="pfpEnabled = false"
+						@blur="blurPfp"
 						class="flex flex-row items-center px-3 transition-colors py-1 rounded-lg hover:bg-white hover:bg-opacity-15 bg-opacity-15"
 						:class="{ 'bg-white': pfpEnabled }"
 					>

@@ -37,7 +37,7 @@ export default async (req: IncomingMessage, res: ServerResponse) => {
 			return res.end();
 		}
 
-		if (supaUser.body[0].balance < nft.price) return false;
+		if (supaUser.body[0].balance < nft.price) return { canTrade: false, text: 'Insufficient Funds.' };
 
 		const guilds: RESTGetAPICurrentUserGuildsResult = await $fetch('https://discord.com/api/users/@me/guilds', {
 			headers: {
@@ -49,8 +49,8 @@ export default async (req: IncomingMessage, res: ServerResponse) => {
 			guilds.some((x) => x.id === config.RPH_ID) ||
 			Object.values({ grian: '581896956998189171', sh0tx: '790199140860428328' }).includes(discordUser.id)
 		)
-			return { canTrade: true };
-		else return { canTrade: false };
+			return { canTrade: true, text: 'Purchase' };
+		else return { canTrade: false, text: "You are not part of the r/ph discord server (or aren't grian or sh0tx)" };
 	} catch (e) {
 		res.writeHead(500);
 		res.write({ error: 'An unknown error occurred' });

@@ -9,18 +9,18 @@ export default async (req: IncomingMessage, res: ServerResponse) => {
 		return sendRedirect(res, '/');
 	}
 
-	const response: any = await $fetch('https://discord.com/api/oauth2/token', {
-		method: 'POST',
-		body: new URLSearchParams({
-			client_id: config.DISCORD_CLIENT_ID,
-			client_secret: config.DISCORD_CLIENT_SECRET,
-			grant_type: 'authorization_code',
-			redirect_uri: 'http://localhost:3000/api/oauth/callback',
-			code: code.toString(),
-		}),
-	});
+	try {
+		const response: any = await $fetch('https://discord.com/api/oauth2/token', {
+			method: 'POST',
+			body: new URLSearchParams({
+				client_id: config.DISCORD_CLIENT_ID,
+				client_secret: config.DISCORD_CLIENT_SECRET,
+				grant_type: 'authorization_code',
+				redirect_uri: 'http://localhost:3000/api/oauth/callback',
+				code: code.toString(),
+			}),
+		});
 
-	if (!response.error) {
 		setCookie(res, 'discord_token', response.access_token, {
 			path: '/',
 			maxAge: 86400 * 6,
@@ -29,6 +29,10 @@ export default async (req: IncomingMessage, res: ServerResponse) => {
 			path: '/',
 			maxAge: 86400 * 365,
 		});
+	} catch (e) {
+		res.writeHead(500);
+		res.write({ error: 'Unknown' });
+		return res.end();
 	}
 
 	return sendRedirect(res, '/');

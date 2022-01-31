@@ -9,7 +9,9 @@ const date = new Date(nft.created_at);
 const timeAgo = useTimeAgo(date);
 const token = useCookie('discord_token').value;
 
-const eligible: boolean = token ? ((await $fetch('/api/nft/canTrade', { params: { id: nft.id, token } })) as any).canTrade : false;
+const canTrade: { canTrade: boolean; text: string } = token
+	? await $fetch('/api/nft/canTrade', { params: { id: nft.id, token } })
+	: { canTrade: false, text: 'Sign in to trade' };
 </script>
 
 <template>
@@ -37,9 +39,12 @@ const eligible: boolean = token ? ((await $fetch('/api/nft/canTrade', { params: 
 								</div>
 								<h2 class="mt-8 text-gray-200">{{ nft.description }}</h2>
 								<button
-									class="w-full bg-blurple mt-8 rounded-md py-2 text-lg text-white font-bold hover:bg-newBlurple transition-colors disabled:bg-newBlurple"
-									:disabled="!eligible"
-									>Purchase</button
+									class="w-full bg-blurple mt-8 rounded-md py-2 text-lg text-white font-bold hover:bg-newBlurple transition-colors disabled:bg-newBlurple disabled:text-gray-200 disabled:cursor-not-allowed"
+									:disabled="!canTrade.canTrade"
+									>{{ canTrade.text }}</button
+								>
+								<a v-if="!canTrade.canTrade" href="https://discord.gg/rph" class="mt-4 text-blurple underline"
+									>Join the r/PH discord server</a
 								>
 							</div>
 						</div>

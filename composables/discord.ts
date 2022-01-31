@@ -14,4 +14,7 @@ export const getUser = async (): Promise<User | null> => {
 	return (await $fetch('/api/user/getUser', { method: 'POST', params: { token: token.value } })) as User;
 };
 
-export const discordLogout = () => {};
+export const discordLogout = async () => {
+	await $fetch('/api/oauth/logout', { method: 'POST', params: { redirect: window.location.href } });
+	window.location.reload();
+};
