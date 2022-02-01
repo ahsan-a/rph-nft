@@ -11,7 +11,7 @@ export default async (req: IncomingMessage, res: ServerResponse) => {
 		return res.end();
 	}
 	try {
-		const dbNft = await supabase.from('nfts').select('*').eq('id', id);
+		const dbNft = await supabase.from('nfts').select('*, users(*)').eq('id', id);
 
 		if (dbNft.status !== 200 || !dbNft.body.length) {
 			res.writeHead(500);

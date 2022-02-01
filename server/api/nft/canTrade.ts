@@ -45,10 +45,7 @@ export default async (req: IncomingMessage, res: ServerResponse) => {
 			},
 		});
 
-		if (
-			guilds.some((x) => x.id === config.RPH_ID) ||
-			Object.values({ grian: '581896956998189171', sh0tx: '790199140860428328' }).includes(discordUser.id)
-		)
+		if (guilds.some((x) => x.id === config.RPH_ID) || Object.values(config.VALID_USERS).includes(discordUser.id))
 			return { canTrade: true, text: 'Purchase' };
 		else return { canTrade: false, text: "You are not part of the r/ph discord server (or aren't grian or sh0tx)" };
 	} catch (e) {

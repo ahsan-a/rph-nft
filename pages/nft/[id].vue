@@ -1,17 +1,33 @@
 <script setup lang="ts">
 import { Nft } from '~/typings';
+import { ref } from 'vue';
+
 const route = useRoute();
 const { SUPABASE_URL } = useRuntimeConfig();
 
 const nft: Nft = await $fetch('/api/nft/get', { params: { id: route.params.id } });
+console.log(nft);
 
 const date = new Date(nft.created_at);
 const timeAgo = useTimeAgo(date);
 const token = useCookie('discord_token').value;
 
+const loading = ref(false);
+
 const canTrade: { canTrade: boolean; text: string } = token
 	? await $fetch('/api/nft/canTrade', { params: { id: nft.id, token } })
 	: { canTrade: false, text: 'Sign in to trade' };
+
+async function buyNft() {
+	if (!token || !canTrade.canTrade) return;
+
+	loading.value = true;
+	await $fetch('/api/nft/buy', {
+		params: { id: nft.id },
+	});
+	loading.value = false;
+	window.location.reload();
+}
 </script>
 
 <template>
@@ -41,8 +57,16 @@ const canTrade: { canTrade: boolean; text: string } = token
 								<button
 									class="w-full bg-blurple mt-8 rounded-md py-2 text-lg text-white font-bold hover:bg-newBlurple transition-colors disabled:bg-newBlurple disabled:text-gray-200 disabled:cursor-not-allowed"
 									:disabled="!canTrade.canTrade"
+									@click="buyNft"
+									v-if="(nft.sale || !nft.owner_id) && !loading"
 									>{{ canTrade.text }}</button
 								>
+								<button
+									class="w-full bg-blurple mt-8 rounded-md py-4 text-lg text-white font-bold hover:bg-newBlurple transition-colors disabled:bg-newBlurple disabled:text-gray-200 disabled:cursor-not-allowed"
+									:disabled="true"
+									v-else-if="(nft.sale || !nft.owner_id) && loading"
+									><img src="https://samherbert.net/svg-loaders/svg-loaders/three-dots.svg" alt="Loading..." class="mx-auto h-3"
+								/></button>
 								<a v-if="!canTrade.canTrade" href="https://discord.gg/rph" class="mt-4 text-blurple underline"
 									>Join the r/PH discord server</a
 								>

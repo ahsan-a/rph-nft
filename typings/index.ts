@@ -16,7 +16,7 @@ export interface Nft {
 	description?: string;
 	sale: boolean;
 	approved: boolean;
-	owner?: User;
+	users?: User;
 }
 
 export interface HomeNfts {
