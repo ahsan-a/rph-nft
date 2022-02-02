@@ -1,5 +1,6 @@
 import { User } from 'typings';
 import { APIUser } from 'discord-api-types/v9';
+import { useMainStore } from '~~/store/main';
 
 export const discordLogin = () => {
 	const { DISCORD_CLIENT_ID } = useRuntimeConfig();
@@ -11,7 +12,12 @@ export const discordLogin = () => {
 export const getUser = async (): Promise<User | null> => {
 	const token = useCookie('discord_token');
 	if (!token.value) return null;
-	return (await $fetch('/api/user/getUser', { method: 'POST', params: { token: token.value } })) as User;
+	const store = useMainStore();
+	if (store.user) return store.user;
+
+	const user = (await $fetch('/api/user/getUser', { method: 'POST', params: { token: token.value } })) as User;
+	store.user = user;
+	return user;
 };
 
 export const discordLogout = async () => {

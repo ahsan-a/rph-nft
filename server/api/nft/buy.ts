@@ -22,8 +22,11 @@ export default async (req: IncomingMessage, res: ServerResponse) => {
 		res.write({ success: false, error: 'NFT does not exist' });
 		return res.end();
 	}
+
 	const nft: Nft = dbNft.body[0];
-	if (!nft.sale && !nft.owner_id) {
+	if (nft.owner_id && !nft.sale) {
+		console.log(nft);
+
 		res.writeHead(400);
 		res.write({ success: false, error: 'NFT is currently not on sale.' });
 		return res.end();
@@ -51,6 +54,18 @@ export default async (req: IncomingMessage, res: ServerResponse) => {
 
 	const user: User = supaUser.body[0];
 
+	if (user.balance < nft.price) {
+		res.writeHead(400);
+		res.write({ success: false, error: 'Insufficient funds' });
+		return res.end();
+	}
+
+	if (user.id === nft.owner_id) {
+		res.writeHead(400);
+		res.write({ success: false, error: 'You cannot buy an NFT from yourself.' });
+		return res.end();
+	}
+
 	let guilds: RESTGetAPICurrentUserGuildsResult;
 	try {
 		guilds = await $fetch('https://discord.com/api/users/@me/guilds', {
@@ -70,18 +85,22 @@ export default async (req: IncomingMessage, res: ServerResponse) => {
 		return res.end();
 	}
 
-	if (supaUser.body[0].balance < nft.price) {
-		res.writeHead(400);
-		res.write({ success: false, error: 'Insufficient funds' });
-		return res.end();
-	}
-
 	await supabase
 		.from('users')
 		.update({ balance: user.balance - nft.price })
 		.match({ id: discordUser.id });
 
 	await supabase.from('nfts').update({ owner_id: discordUser.id, sale: false }).match({ id });
+
+	if (nft.owner_id) {
+		const owner = await supabase.from('users').select('balance').eq('id', nft.owner_id);
+		if (supaUser.status === 200 && supaUser.body.length) {
+			await supabase
+				.from('users')
+				.update({ balance: (owner.body[0] as User).balance + nft.price })
+				.match({ id: nft.owner_id });
+		}
+	}
 
 	return { success: true };
 };

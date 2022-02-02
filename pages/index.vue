@@ -20,7 +20,17 @@ const nfts: HomeNfts = await $fetch('/api/nft/getHomepage');
 		<Suspense>
 			<template #default>
 				<div class="md:mx-5 mx-auto">
-					<div v-if="nfts.orphan.length" class="mt-10">
+					<div v-if="nfts.user?.length" class="mt-8">
+						<h1 class="font-semibold text-center mb-2 text-white text-2xl">your nfts</h1>
+						<div class="flex flex-row flex-wrap mx-auto justify-center">
+							<div v-for="nft in nfts.user" class="mx-4 h-106 mt-none mb-6">
+								<div class="mt-none group hover:pt-6 transition-all">
+									<Nft :nft="nft" />
+								</div>
+							</div>
+						</div>
+					</div>
+					<div v-if="nfts.orphan.length" class="mt-8">
 						<h1 class="font-semibold text-center mb-2 text-white text-2xl">unowned</h1>
 						<div class="flex flex-row flex-wrap mx-auto justify-center">
 							<div v-for="nft in nfts.orphan" class="mx-4 h-106 mt-none mb-6">
@@ -30,7 +40,7 @@ const nfts: HomeNfts = await $fetch('/api/nft/getHomepage');
 							</div>
 						</div>
 					</div>
-					<div v-if="nfts.sale.length" class="mt-10">
+					<div v-if="nfts.sale.length" class="mt-8">
 						<h1 class="font-semibold text-center mb-2 text-white text-2xl">on for sale</h1>
 						<div class="flex flex-row flex-wrap mx-auto justify-center">
 							<div v-for="nft in nfts.sale" class="mx-4 h-106 mt-none mb-6">
@@ -40,7 +50,7 @@ const nfts: HomeNfts = await $fetch('/api/nft/getHomepage');
 							</div>
 						</div>
 					</div>
-					<div v-if="nfts.other.length" class="mt-10">
+					<div v-if="nfts.other.length" class="mt-8">
 						<h1 class="font-semibold text-center mb-2 text-white text-2xl">owned</h1>
 						<div class="flex flex-row flex-wrap mx-auto justify-center">
 							<div v-for="nft in nfts.other" class="mx-4 h-106 mt-none mb-6">
@@ -60,6 +70,10 @@ const nfts: HomeNfts = await $fetch('/api/nft/getHomepage');
 <style>
 html {
 	background-color: #23272a;
+	font-family: 'Comic Sans MS';
+}
+
+.comicSans {
 	font-family: 'Comic Sans MS';
 }
 </style>

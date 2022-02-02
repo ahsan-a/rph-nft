@@ -1,8 +1,9 @@
 import { defineStore } from 'pinia';
+import { User } from '~/typings';
 
 interface State {
 	loggedIn: boolean;
-	user: any;
+	user: User | null;
 }
 export const useMainStore = defineStore('main', {
 	state: (): State => {

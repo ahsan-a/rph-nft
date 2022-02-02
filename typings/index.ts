@@ -23,4 +23,5 @@ export interface HomeNfts {
 	orphan: Nft[];
 	sale: Nft[];
 	other: Nft[];
+	user: Nft[] | null;
 }
