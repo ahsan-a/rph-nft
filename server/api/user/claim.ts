@@ -52,8 +52,10 @@ export default async (req: IncomingMessage, res: ServerResponse) => {
 			return { success: false, wait: Math.ceil((wait - difference) / 1000) };
 		} else {
 			const claims = ['', 'hourly', 'daily', 'weekly'];
+
 			const response: { [key: string]: any } = { balance: user.balance + increase };
 			response[`${claims[Number(claimType)]}_claim`] = now.toISOString();
+
 			const update = await supabase.from('users').update(response).eq('id', user.id);
 			if (update.status !== 200) throw new Error('Failed to update claim date');
 			return { success: true };
