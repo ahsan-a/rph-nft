@@ -28,7 +28,7 @@ function blurPfp() {
 			</NuxtLink>
 			<div class="flex flex-row items-center mr-3">
 				<div v-if="user" class="flex flex-row items-center">
-					<h1 class="font-semibold text-white mr-3">{{ user.balance }} shitcoin</h1>
+					<NuxtLink class="font-semibold text-white mr-3 underline" to="/shitcoin">{{ user.balance }} shitcoin</NuxtLink>
 					<button
 						@click="pfpEnabled = !pfpEnabled"
 						@blur="blurPfp"

@@ -5,6 +5,9 @@ export interface User {
 	avatar: string;
 	balance: number;
 	admin?: boolean;
+	hourly_claim: string;
+	daily_claim: string;
+	weekly_claim: string;
 }
 
 export interface Nft {
