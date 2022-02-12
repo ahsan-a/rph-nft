@@ -30,8 +30,9 @@ function blurPfp() {
 			</NuxtLink>
 			<div class="flex flex-row items-center mr-3">
 				<a
-					class="text-white font-bold text-lg hover:bg-white hover:bg-opacity-20 px-3 py-2 rounded-lg transition-colors"
+					class="text-white font-bold text-lg hover:bg-white hover:bg-opacity-20 px-3 py-2 mx-4 rounded-lg transition-colors"
 					href="https://github.com/ahsan-a/rph-nft"
+					target="_blank"
 				>
 					github (star pls)
 				</a>
