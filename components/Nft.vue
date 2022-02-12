@@ -17,7 +17,7 @@ const timeAgo = useTimeAgo(date);
 	>
 		<img :src="`${SUPABASE_URL}/storage/v1/object/public/nfts/${nft.id}`" class="h-45 w-45 self-center rounded-4xl object-cover" />
 		<h1 class="text-white font-bold text-2xl mt-2">{{ nft.name }}</h1>
-		<h1 class="text-white text-sm font-semibold">{{ nft.price }} shitcoin</h1>
+		<h1 class="text-white text-sm font-semibold">{{ nft.price }} pepeggcoin</h1>
 		<h2 class="text-light-400 mt-1 max-h-min overflow-hidden">{{ nft.description }}</h2>
 
 		<div class="justify-self-end mt-auto text-xs text-center text-gray-300"
