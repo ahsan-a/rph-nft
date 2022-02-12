@@ -21,6 +21,10 @@ useMeta({
 			property: 'og:description',
 			content: 'buy and sell nfts here',
 		},
+		{
+			property: 'og:image',
+			content: 'https://rphnft.vercel.app/icons/rph.webp',
+		},
 	],
 });
 
