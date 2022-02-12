@@ -126,7 +126,7 @@ async function saveOptions() {
 								</div>
 								<div class="flex flex-row items-center justify-between mt-4" v-if="!canTrade.canTrade">
 									<a href="https://discord.gg/rph" class="text-blurple underline" target="_blank">Join the r/ph discord server</a>
-									<NuxtLink to="/pepeggcoin" class="text-blurple underline" target="_blank">get more shidcoin</NuxtLink>
+									<NuxtLink to="/pepeggcoin" class="text-blurple underline">get more pepeggcoin</NuxtLink>
 								</div>
 
 								<div v-if="user?.id === nft.owner_id">

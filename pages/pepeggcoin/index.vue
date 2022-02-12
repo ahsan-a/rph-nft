@@ -104,7 +104,7 @@ useMeta({
 			</div>
 		</div>
 		<div class="p-10 mx-auto w-full xl:w-2/3 mt-6 text-white" v-else>
-			<button class="text-7xl mx-auto text-center font-bold text-blurple underline" @click="discordLogin"
+			<button class="text-7xl mx-auto text-center font-bold text-blurple underline" @click="discordLogin()"
 				>You must be logged in to use this page.</button
 			>
 		</div>

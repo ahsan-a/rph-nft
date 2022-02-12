@@ -16,7 +16,7 @@ export default async (req: IncomingMessage, res: ServerResponse) => {
 				client_id: config.DISCORD_CLIENT_ID,
 				client_secret: config.DISCORD_CLIENT_SECRET,
 				grant_type: 'authorization_code',
-				redirect_uri: 'http://localhost:3000/api/oauth/callback',
+				redirect_uri: `${config.BASE}/api/oauth/callback`,
 				code: code.toString(),
 			}),
 		});

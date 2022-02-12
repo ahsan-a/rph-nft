@@ -11,6 +11,8 @@ export default defineNuxtConfig({
 		SUPABASE_URL: process.env.SUPABASE_URL,
 		RPH_ID: process.env.RPH_ID,
 		VALID_USERS: process.env.VALID_USERS,
+		REDIRECT: process.env.REDIRECT,
+		BASE: process.env.BASE,
 	},
 	privateRuntimeConfig: {
 		DISCORD_CLIENT_SECRET: process.env.DISCORD_CLIENT_SECRET,
