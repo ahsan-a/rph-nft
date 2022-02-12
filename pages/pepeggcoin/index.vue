@@ -19,6 +19,29 @@ async function claimCoin(claimType: number) {
 
 	window.location.reload();
 }
+
+useMeta({
+	title: `pepeggcoin | r/ph nft`,
+	link: [
+		{
+			rel: 'icon',
+			type: 'image/x-icon',
+			href: '/icons/rph.webp',
+		},
+	],
+	meta: [
+		{ charset: 'utf-8' },
+		{ name: 'viewport', content: 'width=device-width, initial-scale=1' },
+		{
+			property: 'og:title',
+			content: 'pepeggcoin | r/ph nft',
+		},
+		{
+			property: 'og:description',
+			content: `buy pepeggcoin on r/ph nft`,
+		},
+	],
+});
 </script>
 
 <template>

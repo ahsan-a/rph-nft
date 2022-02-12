@@ -19,6 +19,33 @@ const canTrade: { canTrade: boolean; text: string } = token
 
 const user = await getUser();
 
+useMeta({
+	title: `${nft.name} #${nft.id} | r/ph nft`,
+	link: [
+		{
+			rel: 'icon',
+			type: 'image/x-icon',
+			href: '/icons/rph.webp',
+		},
+	],
+	meta: [
+		{ charset: 'utf-8' },
+		{ name: 'viewport', content: 'width=device-width, initial-scale=1' },
+		{
+			property: 'og:title',
+			content: `${nft.name} #${nft.id} | r/ph nft`,
+		},
+		{
+			property: 'og:description',
+			content: `view ${nft.name} #${nft.id} NFT on r/ph nft`,
+		},
+		{
+			property: 'og:image',
+			content: `${SUPABASE_URL}/storage/v1/object/public/nfts/${nft.id}`,
+		},
+	],
+});
+
 async function buyNft() {
 	if (!token || !canTrade.canTrade) return;
 

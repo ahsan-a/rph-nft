@@ -3,6 +3,25 @@ import { HomeNfts } from '~/typings';
 
 useMeta({
 	title: 'home | r/ph nft',
+	link: [
+		{
+			rel: 'icon',
+			type: 'image/x-icon',
+			href: '/icons/rph.webp',
+		},
+	],
+	meta: [
+		{ charset: 'utf-8' },
+		{ name: 'viewport', content: 'width=device-width, initial-scale=1' },
+		{
+			property: 'og:title',
+			content: 'home | r/ph nft',
+		},
+		{
+			property: 'og:description',
+			content: 'buy and sell nfts here',
+		},
+	],
 });
 
 const nfts: HomeNfts = await $fetch('/api/nft/getHomepage');

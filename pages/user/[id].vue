@@ -3,6 +3,33 @@ import { User } from '~/typings';
 const route = useRoute();
 
 const user: User = await $fetch('/api/user/nfts', { params: { id: route.params.id } });
+
+useMeta({
+	title: `${user.username}#${user.discriminator} | r/ph nft`,
+	link: [
+		{
+			rel: 'icon',
+			type: 'image/x-icon',
+			href: '/icons/rph.webp',
+		},
+	],
+	meta: [
+		{ charset: 'utf-8' },
+		{ name: 'viewport', content: 'width=device-width, initial-scale=1' },
+		{
+			property: 'og:title',
+			content: `${user.username}#${user.discriminator} | r/ph nft`,
+		},
+		{
+			property: 'og:description',
+			content: `view ${user.username}#${user.discriminator}'s profile on r/ph nft`,
+		},
+		{
+			property: 'og:image',
+			content: user.avatar,
+		},
+	],
+});
 </script>
 <template>
 	<div>
