@@ -62,7 +62,7 @@ async function saveOptions() {
 							<div class="bg-lightbg px-10 pt-10 pb-5 rounded-4xl shadow-lg">
 								<h1 class="text-white font-bold text-6xl mb-6">{{ nft.name }} (#{{ nft.id }})</h1>
 								<div class="text-gray-300 flex flex-row justify-between items-center">
-									<h1 class="font-semibold text-2xl"> {{ nft.price }} shitcoin </h1>
+									<h1 class="font-semibold text-2xl"> {{ nft.price }} pepeggcoin </h1>
 									<h2 class="text-sm"
 										>{{
 											date.toDateString() === new Date().toDateString() ? date.toLocaleTimeString() : date.toLocaleString()
@@ -73,8 +73,12 @@ async function saveOptions() {
 								<pre class="mt-8 text-gray-200 comicSans text-lg">{{ nft.description.trim() }}</pre>
 
 								<div class="text-gray-200 mt-3" v-if="nft.owner_id && nft.users">
-									Owned by {{ nft.users.username }}#{{ nft.users.discriminator }}
+									Owned by
+									<NuxtLink :to="`/user/${nft.users.id}`" class="inline underline"
+										>{{ nft.users.username }}#{{ nft.users.discriminator }}</NuxtLink
+									>
 								</div>
+
 								<div v-if="user?.id !== nft.owner_id">
 									<button
 										class="w-full bg-blurple mt-8 rounded-md py-2 text-lg text-white font-bold hover:bg-newBlurple transition-colors disabled:bg-newBlurple disabled:text-gray-200 disabled:cursor-not-allowed"
@@ -94,8 +98,8 @@ async function saveOptions() {
 									/></button>
 								</div>
 								<div class="flex flex-row items-center justify-between mt-4" v-if="!canTrade.canTrade">
-									<a href="https://discord.gg/rph" class="text-blurple underline" target="_blank">Join the r/PH discord server</a>
-									<NuxtLink to="/shitcoin" class="text-blurple underline" target="_blank">get more shidcoin</NuxtLink>
+									<a href="https://discord.gg/rph" class="text-blurple underline" target="_blank">Join the r/ph discord server</a>
+									<NuxtLink to="/pepeggcoin" class="text-blurple underline" target="_blank">get more shidcoin</NuxtLink>
 								</div>
 
 								<div v-if="user?.id === nft.owner_id">

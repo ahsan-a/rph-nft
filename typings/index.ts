@@ -8,6 +8,7 @@ export interface User {
 	hourly_claim: string;
 	daily_claim: string;
 	weekly_claim: string;
+	nfts?: Nft[];
 }
 
 export interface Nft {

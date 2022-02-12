@@ -4,7 +4,6 @@ import { ref } from 'vue';
 
 const user = await getUser();
 const pfpEnabled = ref(false);
-const menuHover = ref(false);
 
 function blurPfp() {
 	setTimeout(() => {
@@ -14,8 +13,11 @@ function blurPfp() {
 </script>
 
 <template>
-	<div class="w-40 mt-16 py-1 px-0.5 bg-lightbg outline-midbg absolute rounded-md right-1" v-if="pfpEnabled">
-		<button class="text-white px-2 text-sm py-1 hover:bg-lighterbg transition-all w-full" @click="discordLogout">Logout</button>
+	<div class="w-40 mt-16 py-1 px-0.5 bg-lightbg outline-midbg absolute rounded-md right-1 flex flex-col justify-center" v-if="pfpEnabled">
+		<NuxtLink class="text-white px-2 text-sm py-1 hover:bg-lighterbg transition-all w-full block text-center" :to="`/user/${user.id}`"
+			>your nfts</NuxtLink
+		>
+		<button class="text-white px-2 text-sm py-1 hover:bg-lighterbg transition-all w-full" @click="discordLogout">logout</button>
 	</div>
 	<div class="w-full">
 		<div class="bg-blurple flex flex-row justify-between py-1">
@@ -28,7 +30,7 @@ function blurPfp() {
 			</NuxtLink>
 			<div class="flex flex-row items-center mr-3">
 				<div v-if="user" class="flex flex-row items-center">
-					<NuxtLink class="font-semibold text-white mr-3 underline" to="/shitcoin">{{ user.balance }} shitcoin</NuxtLink>
+					<NuxtLink class="font-semibold text-white mr-3 underline" to="/pepeggcoin">{{ user.balance }} pepeggcoin</NuxtLink>
 					<button
 						@click="pfpEnabled = !pfpEnabled"
 						@blur="blurPfp"
