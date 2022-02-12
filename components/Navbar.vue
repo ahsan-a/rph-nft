@@ -29,6 +29,12 @@ function blurPfp() {
 				<h1 class="ml-3 text-white font-bold text-2xl">rph nft</h1>
 			</NuxtLink>
 			<div class="flex flex-row items-center mr-3">
+				<a
+					class="text-white font-bold text-lg hover:bg-white hover:bg-opacity-20 px-3 py-2 rounded-lg transition-colors"
+					href="https://github.com/ahsan-a/rph-nft"
+				>
+					github (star pls)
+				</a>
 				<div v-if="user" class="flex flex-row items-center">
 					<NuxtLink class="font-semibold text-white mr-3 underline" to="/pepeggcoin">{{ user.balance }} pepeggcoin</NuxtLink>
 					<button
@@ -54,7 +60,7 @@ function blurPfp() {
 					@click="discordLogin"
 					v-else
 				>
-					Sign In
+					sign in
 				</button>
 			</div>
 		</div>
