@@ -33,17 +33,17 @@ export default async (req: IncomingMessage, res: ServerResponse) => {
 			case 0:
 				claimDate = new Date(user.hourly_claim);
 				wait = 1000 * 60 * 60;
-				increase = 5;
+				increase = 10;
 				break;
 			case 1:
 				claimDate = new Date(user.daily_claim);
 				wait = 1000 * 60 * 60 * 24;
-				increase = 20;
+				increase = 30;
 				break;
 			case 2:
 				claimDate = new Date(user.weekly_claim);
 				wait = 1000 * 60 * 60 * 24 * 7;
-				increase = 100;
+				increase = 150;
 				break;
 			default:
 				throw new Error('Invalid claim type');
