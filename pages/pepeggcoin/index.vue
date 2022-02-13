@@ -54,7 +54,7 @@ useMeta({
 
 			<div class="bg-lightbg p-5 rounded-4xl shadow-lg mt-3 w-full md:w-3/4 mx-auto grid grid-cols-3 grid-rows-1">
 				<div class="col-span-1 flex flex-col justify-center mx-3">
-					<h1 class="font-semibold text-4xl text-center">hourly +10</h1>
+					<h1 class="font-semibold text-4xl text-center">hourly +20</h1>
 					<div class="text-lg font-medium my-5">
 						{{
 							now.getTime() < hourly.getTime()
@@ -70,7 +70,7 @@ useMeta({
 					>
 				</div>
 				<div class="col-span-1 flex flex-col justify-center mx-3">
-					<h1 class="font-semibold text-4xl text-center">daily +30</h1>
+					<h1 class="font-semibold text-4xl text-center">daily +100</h1>
 					<div class="text-lg font-medium my-5">
 						{{
 							now.getTime() < daily.getTime()
@@ -86,7 +86,7 @@ useMeta({
 					>
 				</div>
 				<div class="col-span-1 flex flex-col justify-center mx-3">
-					<h1 class="font-semibold text-4xl text-center">weekly +150</h1>
+					<h1 class="font-semibold text-4xl text-center">weekly +500</h1>
 					<div class="text-lg font-medium my-5">
 						{{
 							now.getTime() < weekly.getTime()
