@@ -3,6 +3,7 @@ import { Nft } from '~/typings';
 const props = defineProps<{
 	nft: Nft;
 }>();
+console.log(props.nft);
 
 const { SUPABASE_URL } = useRuntimeConfig();
 
@@ -18,6 +19,9 @@ const timeAgo = useTimeAgo(date);
 		<img :src="`${SUPABASE_URL}/storage/v1/object/public/nfts/${nft.id}`" class="h-45 w-45 self-center rounded-4xl object-cover" />
 		<h1 class="text-white font-bold text-2xl mt-2">{{ nft.name }}</h1>
 		<h1 class="text-white text-sm font-semibold">{{ nft.price }} pepeggcoin</h1>
+		<h1 class="text-white text-sm font-semibold" v-if="nft.users"
+			>owned by <NuxtLink class="underline" :to="`/user/${nft.users.id}`">{{ nft.users.username }}#{{ nft.users.discriminator }}</NuxtLink></h1
+		>
 		<h2 class="text-light-400 mt-1 max-h-min overflow-hidden">{{ nft.description }}</h2>
 
 		<div class="justify-self-end mt-auto text-xs text-center text-gray-300"

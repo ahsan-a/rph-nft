@@ -6,7 +6,7 @@ import { APIUser } from 'discord-api-types/v9';
 
 export default async (req: IncomingMessage, res: ServerResponse) => {
 	try {
-		const dbNfts = await supabase.from('nfts').select().order('id', { ascending: false });
+		const dbNfts = await supabase.from('nfts').select('*, users(*)').order('id', { ascending: false });
 
 		if (dbNfts.status !== 200) {
 			res.writeHead(500);
