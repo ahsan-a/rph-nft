@@ -11,7 +11,7 @@ export default async (req: IncomingMessage, res: ServerResponse) => {
 
 	if (!id || !token) {
 		res.writeHead(400);
-		res.write({ success: false, error: 'A discord token or id was not supplied.' });
+		// res.write({ success: false, error: 'A discord token or id was not supplied.' });
 		return res.end();
 	}
 
@@ -19,16 +19,14 @@ export default async (req: IncomingMessage, res: ServerResponse) => {
 
 	if (dbNft.status !== 200 || !dbNft.body.length) {
 		res.writeHead(400);
-		res.write({ success: false, error: 'NFT does not exist' });
+		// res.write({ success: false, error: 'NFT does not exist' });
 		return res.end();
 	}
 
 	const nft: Nft = dbNft.body[0];
-	if (nft.owner_id && !nft.sale) {
-		console.log(nft);
-
+	if ((nft.owner_id && !nft.sale) || nft.price <= 0) {
 		res.writeHead(400);
-		res.write({ success: false, error: 'NFT is currently not on sale.' });
+		// res.write({ success: false, error: 'NFT is currently not on sale.' });
 		return res.end();
 	}
 
@@ -41,14 +39,14 @@ export default async (req: IncomingMessage, res: ServerResponse) => {
 		});
 	} catch {
 		res.writeHead(500);
-		res.write({ success: false, error: 'Error fetching user' });
+		// res.write({ success: false, error: 'Error fetching user' });
 		return res.end();
 	}
 
 	const supaUser = await supabase.from('users').select('balance').eq('id', discordUser.id);
 	if (supaUser.status !== 200 || !supaUser.body.length) {
 		res.writeHead(500);
-		res.write({ success: false, error: 'Error getting user' });
+		// res.write({ success: false, error: 'Error getting user' });
 		return res.end();
 	}
 
@@ -56,13 +54,13 @@ export default async (req: IncomingMessage, res: ServerResponse) => {
 
 	if (user.balance < nft.price) {
 		res.writeHead(400);
-		res.write({ success: false, error: 'Insufficient funds' });
+		// res.write({ success: false, error: 'Insufficient funds' });
 		return res.end();
 	}
 
 	if (user.id === nft.owner_id) {
 		res.writeHead(400);
-		res.write({ success: false, error: 'You cannot buy an NFT from yourself.' });
+		// res.write({ success: false, error: 'You cannot buy an NFT from yourself.' });
 		return res.end();
 	}
 
@@ -75,13 +73,13 @@ export default async (req: IncomingMessage, res: ServerResponse) => {
 		});
 	} catch {
 		res.writeHead(500);
-		res.write({ success: false, error: 'Error fetching guilds' });
+		// res.write({ success: false, error: 'Error fetching guilds' });
 		return res.end();
 	}
 
 	if (!(guilds.some((x) => x.id === config.RPH_ID) || Object.values(config.VALID_USERS).includes(discordUser.id))) {
 		res.writeHead(400);
-		res.write({ success: false, error: 'User not in r/ph or an approved user (free grian)' });
+		// res.write({ success: false, error: 'User not in r/ph or an approved user (free grian)' });
 		return res.end();
 	}
 
