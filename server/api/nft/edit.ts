@@ -15,7 +15,7 @@ export default async (req: IncomingMessage, res: ServerResponse) => {
 		return res.end();
 	}
 
-	if (typeof price !== 'number' || typeof sale !== 'boolean') {
+	if (typeof price !== 'number' || typeof sale !== 'boolean' || price <= 0) {
 		res.writeHead(400);
 		return res.end();
 	}
