@@ -59,13 +59,13 @@ async function buyNft() {
 
 async function saveOptions() {
 	const [sale, price] = [document.getElementById('saleInput') as HTMLInputElement, document.getElementById('priceInput') as HTMLInputElement];
-	if (!sale?.value || !price?.value) return;
+	if (!sale || !price?.value) return;
 
 	await $fetch('/api/nft/edit', {
 		method: 'POST',
 		params: { id: nft.id },
 		body: {
-			sale: Boolean(sale.value),
+			sale: sale.checked,
 			price: Number(price.value),
 		},
 	});
